@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:gravity="center_horizontal"
+	android:orientation="vertical">
+
+	<RelativeLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:focusable="true"
+		android:focusableInTouchMode="true"
+		android:orientation="horizontal">
+
+		<Button
+			android:id="@+id/btn_search"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentRight="true"
+			android:text="@string/search" />
+
+
+		<com.google.android.material.textfield.TextInputLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_alignParentLeft="true"
+			android:layout_marginRight="8dp"
+			android:textColorHint="@color/colorAccent"
+			android:layout_toLeftOf="@id/btn_search">
+
+			<com.google.android.material.textfield.TextInputEditText
+				android:id="@+id/met_search"
+				android:layout_width="match_parent"
+				android:textColorLink="@color/colorAccent"
+				android:layout_height="wrap_content"
+				android:hint="@string/enter_a_github_user_id"
+				android:text="octocat" />
+		</com.google.android.material.textfield.TextInputLayout>
+
+	</RelativeLayout>
+
+	<LinearLayout
+		android:id="@+id/container_userInfo"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="4dp"
+		android:gravity="center_horizontal"
+		android:orientation="vertical"
+		android:visibility="gone">
+
+		<ImageView
+			android:id="@+id/img_user"
+			android:layout_width="120dp"
+			android:layout_height="120dp"
+			android:src="@drawable/ic_launcher_background" />
+
+		<TextView
+			android:id="@+id/txt_userName"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="6dp"
+			android:textSize="16dp"
+			android:textStyle="bold"
+			tools:text="Name" />
+	</LinearLayout>
+
+</LinearLayout>

@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Github respos</string>
+	<string name="search">Search</string>
+	<string name="enter_a_github_user_id">Enter a github user id</string>
+	<string name="error">Oops something went wrong!.</string>
+	<string name="last_updated">Last Updated</string>
+	<string name="stars">Stars</string>
+	<string name="forks">Forks</string>
 </resources>
