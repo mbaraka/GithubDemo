@@ -27,6 +27,7 @@ public class AppContextModule {
         return appContext;
     }
 
+    @Provides
     RequestHelper provideRequestHelper() {
         return new RequestHelper();
     }

@@ -34,8 +34,7 @@
 				android:layout_width="match_parent"
 				android:textColorLink="@color/colorAccent"
 				android:layout_height="wrap_content"
-				android:hint="@string/enter_a_github_user_id"
-				android:text="octocat" />
+				android:hint="@string/enter_a_github_user_id"/>
 		</com.google.android.material.textfield.TextInputLayout>
 
 	</RelativeLayout>
