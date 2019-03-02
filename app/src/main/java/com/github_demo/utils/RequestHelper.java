@@ -12,8 +12,14 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+import javax.inject.Inject;
+
 public class RequestHelper {
 	private OkHttpClient client = new OkHttpClient();
+
+	@Inject
+	public RequestHelper() {
+	}
 
 	public Observable<String> request(final String url) {
 		return Observable.create((ObservableOnSubscribe<String>) emitter -> {

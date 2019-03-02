@@ -10,24 +10,26 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github_demo.model.Repo
+import com.github_demo.utils.RequestHelper
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.weather.utils.rxError
 import io.reactivex.disposables.SerialDisposable
 import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), ViewHolderClicked<Repo> {
 
-    private val searchPresenter = SearchPresenter()
+    @Inject lateinit var searchPresenter:SearchPresenter
+
     private lateinit var repoAdapter: RepoAdapter
     private val disposable = SerialDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        headerView.setSearchPresenter(searchPresenter)
+        Application.appComponent.inject(this)
 
         recycler.layoutManager = LinearLayoutManager(this)
         recycler.setHasFixedSize(true)

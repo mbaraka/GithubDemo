@@ -10,17 +10,19 @@ import com.weather.utils.rxError
 import io.reactivex.Observable
 import io.reactivex.disposables.SerialDisposable
 import io.reactivex.subjects.PublishSubject
+import javax.inject.Inject
 
-class SearchPresenter {
-    private val requestHelper = RequestHelper()
+
+class SearchPresenter @Inject constructor(private val requestHelper: RequestHelper) {
+
     private val repoEmitter = PublishSubject.create<List<Repo>>()
     private val disposable = SerialDisposable()
 
     fun search(name: String): Observable<User> {
         return requestHelper.request(URL_USER + name)
                 .map {
-//                    Gson().fromJson(it, User::class.java)
-                    fakeUser()
+                    Gson().fromJson(it, User::class.java)
+//                    fakeUser()
                 }
                 .doOnNext {
                     searchForRepo(it)
@@ -36,18 +38,18 @@ class SearchPresenter {
                 .map { s ->
                     val listType = object : TypeToken<ArrayList<Repo>>() {}.type
 
-//                    repoEmitter.onNext(Gson().fromJson<ArrayList<Repo>>(s, listType))
-                    repoEmitter.onNext(fakeRepoList())
+                    repoEmitter.onNext(Gson().fromJson<ArrayList<Repo>>(s, listType))
+//                    repoEmitter.onNext(fakeRepoList())
                 }
                 .subscribe(emptyConsumer("searching for repo is done"), rxError("Failed to get repo")))
     }
 
 
     companion object {
-        private const val URL_USER = "https://api.github.com/users/"
+        const val URL_USER = "https://api.github.com/users/"
 
-        private const val USER_ID = "{userId}"
-        private const val URL_REPO = "https://api.github.com/users/{userId}/repos"
+        const val USER_ID = "{userId}"
+        const val URL_REPO = "https://api.github.com/users/{userId}/repos"
 
         fun fakeUser(): User {
             return User("octocat", "The Octocat", "https://avatars3.githubusercontent.com/u/583231?v=4")

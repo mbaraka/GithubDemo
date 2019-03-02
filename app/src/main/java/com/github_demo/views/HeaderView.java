@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.github_demo.Application;
 import com.github_demo.R;
 import com.github_demo.SearchPresenter;
 import com.github_demo.model.User;
@@ -28,12 +29,14 @@ import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.disposables.SerialDisposable;
 
+import javax.inject.Inject;
+
 public class HeaderView extends LinearLayout implements View.OnClickListener {
 	private TextInputEditText met_search;
 	private ImageView img_user;
 	private TextView txt_userName;
 	private LinearLayout container_userInfo;
-	private SearchPresenter searchPresenter;
+	@Inject SearchPresenter searchPresenter;
 	private SerialDisposable disposable = new SerialDisposable();
 
 	//region constructors
@@ -66,12 +69,9 @@ public class HeaderView extends LinearLayout implements View.OnClickListener {
 		img_user = findViewById(R.id.img_user);
 		txt_userName = findViewById(R.id.txt_userName);
 		container_userInfo = findViewById(R.id.container_userInfo);
+		Application.appComponent.inject(this);
 	}
 	//endregion
-
-	public void setSearchPresenter(SearchPresenter searchPresenter) {
-		this.searchPresenter = searchPresenter;
-	}
 
 	@Override
 	public void onClick(View v) {
